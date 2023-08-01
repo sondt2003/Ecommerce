@@ -1,12 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { LogBox } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Main from './Navigator/Main';
+import { NativeBaseProvider } from 'native-base';
+import HeaderShared from './src/Shared/HeaderShared';
+import { Provider } from "react-redux";
+import store from "./Redux/store";
+
+LogBox.ignoreAllLogs(true);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer style={styles.container}>
+      <NativeBaseProvider>
+      {/* <HeaderShared></HeaderShared> */}
+        <Main></Main>
+      </NativeBaseProvider>
+    </NavigationContainer>
+    </Provider>
   );
 }
 
